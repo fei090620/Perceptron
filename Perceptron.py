@@ -3,17 +3,15 @@
 
 
 #一个And感知器，当输入为[1,1]，输出为1;输入为[1,0]，输出为0;输入为[0,1]，输出为0;输入为[0,0]，输出为0;
-class AndPerceptron(object):
-    def __init__(self, input_xs, lables, train_speed, input_num):
+class Perceptron(object):
+    def __init__(self, input_xs, lables, train_speed, input_num, activator):
         self.input_xs = input_xs
         self.labels = lables
         self.train_speed = train_speed
         self.out_put_ys = []
         self.weights = [0 for _ in range(input_num)]
         self.b = 0
-
-    def activator(self, out_put_y):
-        return 1 if out_put_y > 0 else 0
+        self.activator = activator
 
     def get_output(self, input_x):
         return self.activator(
@@ -47,13 +45,17 @@ class AndPerceptron(object):
         self.b = self.b + self.train_speed * var_out_put
 
 
+def activator(out_put):
+    return 0 if out_put <0 else 1
+
+
 if __name__ == '__main__':
     input_xs = [[1,1],[1,0],[0,1],[0,0]]
     labels = [1,1,1,0]
     train_speed = 0.1
     input_num = 2
 
-    and_perceptron = AndPerceptron(input_xs, labels, train_speed, input_num)
+    and_perceptron = Perceptron(input_xs, labels, train_speed, input_num, activator)
     and_perceptron.train(10)
 
 
