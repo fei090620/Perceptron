@@ -14,7 +14,7 @@ train_imgae_path = "./mnist_data/train-images.idx3-ubyte"
 train_label_path = "./mnist_data/train-labels.idx1-ubyte"
 
 
-class mnist_data(object):
+class mnist_data_reader(object):
     def __init__(self):
         #big ender and 4 unsigned int
         self.image_header_tmf = '>IIII'
@@ -36,7 +36,7 @@ class mnist_data(object):
             index += struct.calcsize(image_size_tmf)
             print image_bytes
             images_offset.append(image_bytes)
-        return np.array(images_offset)
+        return images_offset
 
 
     def read_labels(self, path):
@@ -51,12 +51,12 @@ class mnist_data(object):
             index += struct.calcsize(self.lable_tmf)
             labels_offset.append(label_bytes)
 
-        return np.array(labels_bytes)
+        return labels_bytes
 
 
 
 if __name__ == '__main__':
-    data_reader = mnist_data()
+    data_reader = mnist_data_reader()
     t_images = data_reader.read_images(test_image_path)
     t_labels = data_reader.read_labels(test_label_path)
     tr_images = data_reader.read_images(train_imgae_path)
