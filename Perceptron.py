@@ -1,7 +1,3 @@
-#!usr/bin/env python
-# -*- coding: utf-8 -*-
-
-
 #一个And感知器，当输入为[1,1]，输出为1;输入为[1,0]，输出为0;输入为[0,1]，输出为0;输入为[0,0]，输出为0;
 class Perceptron(object):
     def __init__(self, input_xs, lables, train_speed, input_num, activator):
