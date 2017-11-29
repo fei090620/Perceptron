@@ -50,17 +50,19 @@ class bp_neural_network(object):
         return deltas
 
     def cal_output_Y(self, input_X, activator):
-        output = activator(input_X)
+        output = np.array(input_X).flatten()
         out_puts = []
-        for i in len(self.weights):
-            output = activator(np.dot(self.weights[i], output))
+        for weight in self.weights:
+            dot = np.dot(np.array(weight), output)
+            print dot
+            output = activator(dot)
             out_puts.append(output)
         print 'output: {0}/n'.format(output)
         return output, out_puts
 
     def init_weights(self, layer_nodes):
         for i in range(self.layer_num - 1):
-            weight = np.random.rand(0, 1, layer_nodes[i + 1], layer_nodes[i])
+            weight = np.random.rand(layer_nodes[i + 1], layer_nodes[i])
             print weight
             self.weights.append(weight)
 
@@ -95,7 +97,7 @@ if __name__ == '__main__':
     tr_labels = data_reader.read_labels(train_label_path)
 
     nerual_network = bp_neural_network([28 * 28, 1000, 10])
-    activator = lambda a: 1 / (1 + math.exp(a))
+    activator = np.vectorize(lambda a: 1 / (1 + math.exp(a)))
     input_Xs = tr_images
     label_Ts = tr_labels
     speed = 1
