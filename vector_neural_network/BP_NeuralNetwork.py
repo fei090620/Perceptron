@@ -97,6 +97,7 @@ if __name__ == '__main__':
     tr_labels = data_reader.read_labels(train_label_path)
 
     nerual_network = bp_neural_network([28 * 28, 1000, 10])
+
     activator = np.vectorize(lambda a: 1 / (1 + math.exp(a)))
     input_Xs = tr_images
     label_Ts = tr_labels
@@ -104,4 +105,4 @@ if __name__ == '__main__':
     iteration_num = 100
     t_input_Xs = t_images
     t_label_Ts = t_labels
-    nerual_network.train(input_Xs, label_Ts, activator, speed, iteration_num, t_input_Xs, t_label_Ts)
+    neural_network.train(input_Xs, label_Ts, activator, speed, iteration_num, t_input_Xs, t_label_Ts)
