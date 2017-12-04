@@ -45,8 +45,8 @@ class con_layer(object):
     def init_sensatives(self, filter_num, filter_deep):
         self.sensatives = []
         for i in range(filter_num):
-        temp_sensative = np.zeros([self.feature_map_height, self.feature_map_width ,filter_deep])
-        self.sensatives.append(temp_sensative)
+            temp_sensative = np.zeros([self.feature_map_height, self.feature_map_width ,filter_deep])
+            self.sensatives.append(temp_sensative)
 
 
 
