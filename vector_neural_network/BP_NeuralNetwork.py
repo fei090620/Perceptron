@@ -1,6 +1,8 @@
 import numpy as np
 import sys
 
+from sklearn import neural_network
+
 sys.path.append('..')
 
 from mnist_demo.mnist_data import mnist_data_reader
